@@ -45,7 +45,7 @@ public class HomeController {
     @PostMapping("/home/ins")
     public String insertHome(@RequestBody Home newHome) {
 
-        Home h = new Home();
+     Home h ;//= new Home();
         h = this.homeService.saveAndFlush(newHome);
         return "Created home with id :" + h.getHomeId().toString();
 
@@ -54,8 +54,8 @@ public class HomeController {
     @PutMapping("/home/ins/{id}")
     public String insertHome(@RequestBody Home newHome, @PathVariable String id) {
 
-        Home h = new Home();
-        h = this.homeService.getOne(Long.valueOf(id));
+     //   Home h = new Home();
+        Home h = this.homeService.getOne(Long.valueOf(id));
         if (newHome.getDateToVisit() != null) {
             h.setDateToVisit(newHome.getDateToVisit());
         }
