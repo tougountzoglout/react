@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://sleepy-inlet-37715.herokuapp.com/")
 public class HomeController {
     private HomeServiceImpl homeService;
 
@@ -45,8 +45,8 @@ public class HomeController {
     @PostMapping("/home/ins")
     public String insertHome(@RequestBody Home newHome) {
 
-     Home h ;//= new Home();
-        h = this.homeService.saveAndFlush(newHome);
+     //Home h ;//= new Home();
+       Home h = this.homeService.saveAndFlush(newHome);
         return "Created home with id :" + h.getHomeId().toString();
 
     }
