@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 
-@CrossOrigin(origins = "https://sleepy-inlet-37715.herokuapp.com/")
+@CrossOrigin(origins ="https://sleepy-inlet-37715.herokuapp.com")
 public class HomeController {
     private HomeServiceImpl homeService;
 
