@@ -18,11 +18,6 @@ public class UserController {
 
     @GetMapping("/users")
     public List<Users> getUsers() {
-//        Users teo=new Users();
-//       // teo.setId(Long.valueOf()1);
-//    //    teo.setUsername("teo");
-//     //   teo.setPassword("123");
-//        this.userService.saveAndFlush(teo);
         return this.userService.findAll();
     }
 
@@ -31,6 +26,12 @@ public class UserController {
         System.out.println(id);
         Long idd = Long.valueOf(id);
         return this.userService.getOne(idd);
+    }
+    @GetMapping("/user/{username}/{password}")
+    public Users getUserByNameAndPassword(@PathVariable String username,@PathVariable String password) {
+//        System.out.println(id);
+//        Long idd = Long.valueOf(id);
+        return this.userService.findByUsernameAndPassword(username,password);
     }
 
     @DeleteMapping("/user/delete/{id}")

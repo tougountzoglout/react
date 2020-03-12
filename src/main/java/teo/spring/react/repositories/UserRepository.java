@@ -8,6 +8,6 @@ import teo.spring.react.entities.Users;
 @Repository
 public interface UserRepository extends JpaRepository<Users, Long> {
 
-
+      public Users findByUsernameAndPassword(String username,String password);
 
 }

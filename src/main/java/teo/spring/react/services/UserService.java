@@ -26,6 +26,7 @@ public interface UserService {
 
    public Users getOne(Long id);
 
+    public Users findByUsernameAndPassword(String username,String password);
 
 
 
