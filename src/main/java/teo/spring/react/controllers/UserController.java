@@ -18,11 +18,11 @@ public class UserController {
 
     @GetMapping("/users")
     public List<Users> getUsers() {
-        Users teo=new Users();
-       // teo.setId(Long.valueOf()1);
-    //    teo.setUsername("teo");
-     //   teo.setPassword("123");
-        this.userService.saveAndFlush(teo);
+//        Users teo=new Users();
+//       // teo.setId(Long.valueOf()1);
+//    //    teo.setUsername("teo");
+//     //   teo.setPassword("123");
+//        this.userService.saveAndFlush(teo);
         return this.userService.findAll();
     }
 
