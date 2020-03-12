@@ -7,7 +7,7 @@ import teo.spring.react.services.UserServiceImpl;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "https://sleepy-inlet-37715.herokuapp.com/")
+@CrossOrigin(origins = "https://sleepy-inlet-37715.herokuapp.com",allowedHeaders = "*")
 public class UserController {
     private UserServiceImpl userService;
 
