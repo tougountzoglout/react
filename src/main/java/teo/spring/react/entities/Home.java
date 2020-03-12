@@ -1,11 +1,9 @@
 package teo.spring.react.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -13,17 +11,39 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode
 public class Home {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long HomeId;
-
+    private Long homeId;
     private String name;
+    private String area;
+    private String eidos;
+    private Long tm;
+    private Long year;
     private String url;
-    private int phone;
+    private Long phone;
     private Date dateToVisit;
+    private String comments;
     private boolean liked;
+
+
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Home )) return false;
+        return homeId != null && homeId.equals(((Home) o).getHomeId());
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
 
 }

@@ -15,6 +15,7 @@ import java.util.Optional;
 @Repository
 public interface HomeRepository extends JpaRepository<Home, Long> {
 
-
-
+    Home  findByHomeIdAndUserId (Long id , Long userId);
+    List<Home> findByUserId(Long userId);
+    public Page<Home> findByUserId(Long userId, Pageable pageable);
 }
