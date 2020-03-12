@@ -25,9 +25,9 @@ public class HomeServiceImpl implements HomeService {
 //    }
 
     @Override
-    public Home  findByHomeIdAndUserId(Long id, Long userId) {
+    public Home  findByHomeIdAndUsersId(Long id, Long userId) {
 
-        return this.homeRepository.findByHomeIdAndUserId(id, userId);
+        return this.homeRepository.findByHomeIdAndUsersId(id, userId);
     }
 
     @Override
@@ -51,12 +51,12 @@ public class HomeServiceImpl implements HomeService {
 //    }
 
     @Override
-    public List<Home> findByUserId(Long userId) {
-        return this.homeRepository.findByUserId( userId);
+    public List<Home> findByUsersId(Long userId) {
+        return this.homeRepository.findByUsersId( userId);
     }
 
     @Override
-    public Page<Home> findByUserId(Long userId, Pageable pageable) {
-        return this.homeRepository.findByUserId(userId, pageable);
+    public Page<Home> findByUsersId(Long userId, Pageable pageable) {
+        return this.homeRepository.findByUsersId(userId, pageable);
     }
 }

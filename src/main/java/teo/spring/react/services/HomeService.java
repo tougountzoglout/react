@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface HomeService {
     // public List<Home> findAll();
 
-    public Home  findByHomeIdAndUserId (Long id , Long userId);
+    public Home  findByHomeIdAndUsersId (Long id , Long userId);
   //  public List<Home> findAll(Sort var1);
 
    // List<T> findAllById(Iterable<ID> var1);
@@ -31,7 +31,7 @@ public interface HomeService {
 
   // public Home getOne(Long id);
 
-   public List<Home> findByUserId(Long userId);
+   public List<Home> findByUsersId(Long userId);
 
-    public Page<Home> findByUserId(Long userId, Pageable pageable);
+    public Page<Home> findByUsersId(Long userId, Pageable pageable);
 }

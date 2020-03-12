@@ -29,14 +29,14 @@ public class HomeController {
     @GetMapping("/homes/{userId}")
     public List<Home> getHomes(@PathVariable String userId) {
 
-        return this.homeService.findByUserId(Long.valueOf(userId));
+        return this.homeService.findByUsersId(Long.valueOf(userId));
     }
 
 
     @GetMapping("/homes/{userId}/{page}")
     public Page<Home> getHomes(@PathVariable String userId,@PathVariable String page) {
         Pageable pageable= PageRequest.of(Integer.parseInt(page),5, Sort.by("homeId").descending());
-        return this.homeService.findByUserId(Long.valueOf(userId),pageable);
+        return this.homeService.findByUsersId(Long.valueOf(userId),pageable);
     }
 
 //    @GetMapping("/home/{id}")
@@ -51,13 +51,13 @@ public class HomeController {
         System.out.println(id);
         Long idd = Long.valueOf(id);
         Long uid = Long.valueOf(userid);
-        return this.homeService.findByHomeIdAndUserId(idd,uid);
+        return this.homeService.findByHomeIdAndUsersId(idd,uid);
     }
 
     @DeleteMapping("/home/{userid}/delete/{id}")
     public String deleteHome(@PathVariable String id, @PathVariable String userid) {
        // System.out.println(id);
-        this.homeService.findByHomeIdAndUserId(Long.valueOf(id),Long.valueOf(userid)).setUsers(null);
+        this.homeService.findByHomeIdAndUsersId(Long.valueOf(id),Long.valueOf(userid)).setUsers(null);
         Long idd = Long.valueOf(id);
         this.homeService.deleteByID(idd);
         return "Object with id " + id + " deleted";
@@ -78,7 +78,7 @@ public class HomeController {
     public String updateHome(@RequestBody Home newHome, @PathVariable String id,@PathVariable String userid) {
 
      //   Home h = new Home();
-        Home h = this.homeService.findByHomeIdAndUserId(Long.valueOf(id),Long.valueOf(userid));
+        Home h = this.homeService.findByHomeIdAndUsersId(Long.valueOf(id),Long.valueOf(userid));
         if (newHome.getDateToVisit() != null) {
             h.setDateToVisit(newHome.getDateToVisit());
         }
