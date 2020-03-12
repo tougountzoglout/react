@@ -15,7 +15,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode(exclude = "homes")
-public class User {
+public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,18 +24,18 @@ public class User {
     @JsonIgnore
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Home> homes;
 
     public void addHome(Home home) {
         homes.add(home);
-        home.setUser(this);
+        home.setUsers(this);
     }
 
     public void removeComment(Home home) {
         homes.remove(home);
-        home.setUser(null);
+        home.setUsers(null);
     }
 
 }

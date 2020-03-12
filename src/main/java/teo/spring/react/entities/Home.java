@@ -31,7 +31,7 @@ public class Home {
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @JsonIgnore
-    private User user;
+    private Users users;
 
 
     @Override

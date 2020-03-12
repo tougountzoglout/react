@@ -1,7 +1,7 @@
 package teo.spring.react.services;
 
 import org.springframework.stereotype.Service;
-import teo.spring.react.entities.User;
+import teo.spring.react.entities.Users;
 import teo.spring.react.repositories.UserRepository;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAll() {
+    public List<Users> findAll() {
        return this.userRepository.findAll();
     }
 
@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public <S extends User> S saveAndFlush(S user) {
+    public <S extends Users> S saveAndFlush(S user) {
        return this.userRepository.saveAndFlush(user);
     }
 
@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getOne(Long id) {
+    public Users getOne(Long id) {
       return this.userRepository.findById(id).get();
     }
 }

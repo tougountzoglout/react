@@ -1,12 +1,12 @@
 package teo.spring.react.services;
 
-import teo.spring.react.entities.Home;
-import teo.spring.react.entities.User;
+
+import teo.spring.react.entities.Users;
 
 import java.util.List;
 
 public interface UserService {
-     public List<User> findAll();
+     public List<Users> findAll();
 
   //  public List<Home> findAll(Sort var1);
 
@@ -16,7 +16,7 @@ public interface UserService {
 
     void flush();
 
-     public <S extends User> S saveAndFlush(S home);
+     public <S extends Users> S saveAndFlush(S home);
 
    // void deleteInBatch(Iterable<T> var1);
 
@@ -24,7 +24,7 @@ public interface UserService {
 
     public void deleteByID(Long id);
 
-   public User getOne(Long id);
+   public Users getOne(Long id);
 
 
 

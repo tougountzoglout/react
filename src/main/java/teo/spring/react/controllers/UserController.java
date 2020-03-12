@@ -1,7 +1,7 @@
 package teo.spring.react.controllers;
 
 import org.springframework.web.bind.annotation.*;
-import teo.spring.react.entities.User;
+import teo.spring.react.entities.Users;
 import teo.spring.react.services.UserServiceImpl;
 
 import java.util.List;
@@ -17,8 +17,8 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public List<User> getUsers() {
-        User teo=new User();
+    public List<Users> getUsers() {
+        Users teo=new Users();
        // teo.setId(Long.valueOf()1);
     //    teo.setUsername("teo");
      //   teo.setPassword("123");
@@ -27,7 +27,7 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}")
-    public User getUser(@PathVariable String id) {
+    public Users getUser(@PathVariable String id) {
         System.out.println(id);
         Long idd = Long.valueOf(id);
         return this.userService.getOne(idd);
@@ -42,19 +42,19 @@ public class UserController {
     }
 
     @PostMapping("/user/ins")
-    public String insertUser(@RequestBody User newUser) {
+    public String insertUser(@RequestBody Users newUser) {
 
      //Home h ;//= new Home();
-       User h = this.userService.saveAndFlush(newUser);
+       Users h = this.userService.saveAndFlush(newUser);
         return "Created home with id :" + h.getId().toString();
 
     }
 
     @PutMapping("/user/ins/{id}")
-    public String updateUser(@RequestBody User newUser, @PathVariable String id) {
+    public String updateUser(@RequestBody Users newUser, @PathVariable String id) {
 
      //   Home h = new Home();
-        User h = this.userService.getOne(Long.valueOf(id));
+        Users h = this.userService.getOne(Long.valueOf(id));
 //        if (newUser.getDateToVisit() != null) {
 //            h.setDateToVisit(newHome.getDateToVisit());
 //        }

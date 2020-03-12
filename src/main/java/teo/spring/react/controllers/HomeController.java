@@ -6,10 +6,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 import teo.spring.react.entities.Home;
-import teo.spring.react.entities.User;
-import teo.spring.react.services.HomeService;
+import teo.spring.react.entities.Users;
 import teo.spring.react.services.HomeServiceImpl;
-import teo.spring.react.services.UserService;
 import teo.spring.react.services.UserServiceImpl;
 
 
@@ -59,7 +57,7 @@ public class HomeController {
     @DeleteMapping("/home/{userid}/delete/{id}")
     public String deleteHome(@PathVariable String id, @PathVariable String userid) {
        // System.out.println(id);
-        this.homeService.findByHomeIdAndUserId(Long.valueOf(id),Long.valueOf(userid)).setUser(null);
+        this.homeService.findByHomeIdAndUserId(Long.valueOf(id),Long.valueOf(userid)).setUsers(null);
         Long idd = Long.valueOf(id);
         this.homeService.deleteByID(idd);
         return "Object with id " + id + " deleted";
@@ -69,8 +67,8 @@ public class HomeController {
     public String insertHome(@RequestBody Home newHome,@PathVariable String userid) {
 
      //Home h ;//= new Home();
-       User u=this.userService.getOne(Long.valueOf(userid));
-       newHome.setUser(u);
+       Users u=this.userService.getOne(Long.valueOf(userid));
+       newHome.setUsers(u);
        Home h = this.homeService.saveAndFlush(newHome);
         return "Created home with id :" + h.getHomeId().toString();
 
