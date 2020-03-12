@@ -47,7 +47,7 @@ public class UserController {
 
      //Home h ;//= new Home();
        Users h = this.userService.saveAndFlush(newUser);
-        return "Created user with id :" + h.getId().toString();
+        return  h.getId().toString();
 
     }
 
