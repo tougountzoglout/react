@@ -30,14 +30,17 @@ public class JwtTokenUtil implements Serializable {
   private Long expiration;
 
   public String getUsernameFromToken(String token) {
+
     return getClaimFromToken(token, Claims::getSubject);
   }
 
   public Date getIssuedAtDateFromToken(String token) {
+
     return getClaimFromToken(token, Claims::getIssuedAt);
   }
 
   public Date getExpirationDateFromToken(String token) {
+
     return getClaimFromToken(token, Claims::getExpiration);
   }
 
@@ -95,6 +98,7 @@ public class JwtTokenUtil implements Serializable {
   }
 
   private Date calculateExpirationDate(Date createdDate) {
+
     return new Date(createdDate.getTime() + expiration * 1000);
   }
 }

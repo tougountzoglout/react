@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import teo.spring.react.jwt.resource.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -27,7 +28,7 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtUnAuthorizedResponseAuthenticationEntryPoint jwtUnAuthorizedResponseAuthenticationEntryPoint;
 
     @Autowired
-    private UserDetailsService jwtInMemoryUserDetailsService;
+    private UserDetailsServiceImpl jwtInMemoryUserDetailsService;
 
     @Autowired
     private JwtTokenAuthorizationOncePerRequestFilter jwtAuthenticationTokenFilter;
@@ -83,12 +84,12 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .ignoring()
             .antMatchers(
-                HttpMethod.GET,
-                "/" //Other Stuff You want to Ignore
+                HttpMethod.POST,
+                "/user/ins" //Other Stuff You want to Ignore
             )
             .and()
             .ignoring()
-            .antMatchers("/h2-console/**/**");//Should not be in Production!
+            .antMatchers("/h2/**/**");//Should not be in Production!
     }
 }
 

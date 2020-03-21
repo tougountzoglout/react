@@ -21,7 +21,7 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String username;
-    @JsonIgnore
+  //  @JsonIgnore
     private String password;
 
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)

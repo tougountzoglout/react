@@ -28,6 +28,6 @@ public interface UserService {
 
     public Users findByUsernameAndPassword(String username,String password);
 
-
+    public Users findByUsername(String username);
 
 }

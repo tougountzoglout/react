@@ -1,5 +1,6 @@
 package teo.spring.react.controllers;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import teo.spring.react.entities.Users;
 import teo.spring.react.services.UserServiceImpl;
@@ -7,13 +8,18 @@ import teo.spring.react.services.UserServiceImpl;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "https://sleepy-inlet-37715.herokuapp.com",allowedHeaders = "*")
+@CrossOrigin(origins = {"https://sleepy-inlet-37715.herokuapp.com","http://localhost:3000"}, allowedHeaders = "*")
 public class UserController {
     private UserServiceImpl userService;
+    private PasswordEncoder passwordEncoder;
 
+//    public UserController(UserServiceImpl userService) {
+//        this.userService = userService;
+//    }
 
-    public UserController(UserServiceImpl userService) {
+    public UserController(UserServiceImpl userService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/users")
@@ -27,15 +33,24 @@ public class UserController {
         Long idd = Long.valueOf(id);
         return this.userService.getOne(idd);
     }
+
     @GetMapping("/user/{username}/{password}")
-    public Users getUserByNameAndPassword(@PathVariable String username,@PathVariable String password) {
+    public Users getUserByNameAndPassword(@PathVariable String username, @PathVariable String password) {
 //        System.out.println(id);
 //        Long idd = Long.valueOf(id);
-        return this.userService.findByUsernameAndPassword(username,password);
+        return this.userService.findByUsernameAndPassword(username, password);
     }
 
+    @GetMapping("/users/{username}")
+    public Users getUserByNameAndPassword(@PathVariable String username) {
+//        System.out.println(id);
+//        Long idd = Long.valueOf(id);
+        return this.userService.findByUsername(username);
+    }
+
+
     @DeleteMapping("/user/delete/{id}")
-    public String deleteUser (@PathVariable String id) {
+    public String deleteUser(@PathVariable String id) {
         System.out.println(id);
         Long idd = Long.valueOf(id);
         this.userService.deleteByID(idd);
@@ -45,16 +60,17 @@ public class UserController {
     @PostMapping("/user/ins")
     public String insertUser(@RequestBody Users newUser) {
 
-     //Home h ;//= new Home();
-       Users h = this.userService.saveAndFlush(newUser);
-        return  h.getId().toString();
+        String pass = newUser.getPassword();
+        newUser.setPassword(passwordEncoder.encode(pass));
+        Users h = this.userService.saveAndFlush(newUser);
+        return h.getId().toString();
 
     }
 
     @PutMapping("/user/ins/{id}")
     public String updateUser(@RequestBody Users newUser, @PathVariable String id) {
 
-     //   Home h = new Home();
+        //   Home h = new Home();
         Users h = this.userService.getOne(Long.valueOf(id));
 //        if (newUser.getDateToVisit() != null) {
 //            h.setDateToVisit(newHome.getDateToVisit());
