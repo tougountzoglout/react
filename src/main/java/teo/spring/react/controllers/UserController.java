@@ -34,11 +34,11 @@ public class UserController {
         return this.userService.getOne(idd);
     }
 
-    @GetMapping("/user/{username}/{password}")
-    public Users getUserByNameAndPassword(@PathVariable String username, @PathVariable String password) {
+    @PostMapping("/user")
+    public Users getUserByNameAndPassword(@RequestBody Users newUser) {
 //        System.out.println(id);
 //        Long idd = Long.valueOf(id);
-        return this.userService.findByUsernameAndPassword(username, password);
+        return this.userService.findByUsernameAndPassword(newUser.getUsername(),newUser.getPassword());
     }
 
     @GetMapping("/users/{username}")
