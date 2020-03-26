@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"https://sleepy-inlet-37715.herokuapp.com","http://localhost:3000"}, allowedHeaders = "*")
 public class JwtAuthenticationRestController {
 
     @Value("${jwt.http.request.header}")
