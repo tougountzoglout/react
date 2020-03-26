@@ -35,10 +35,12 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public Users getUserByNameAndPassword(@RequestBody Users newUser) {
+    public String getUserByNameAndPassword(@RequestBody Users newUser) {
 //        System.out.println(id);
 //        Long idd = Long.valueOf(id);
-        return this.userService.findByUsernameAndPassword(newUser.getUsername(),newUser.getPassword());
+        Users user=this.userService.findByUsernameAndPassword(newUser.getUsername(),newUser.getPassword());
+        return  user.getId().toString();
+
     }
 
     @GetMapping("/users/{username}")
