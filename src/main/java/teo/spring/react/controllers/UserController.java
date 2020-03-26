@@ -38,6 +38,7 @@ public class UserController {
     public String getUserByNameAndPassword(@RequestBody Users newUser) {
 //        System.out.println(id);
 //        Long idd = Long.valueOf(id);
+        newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
         Users user=this.userService.findByUsernameAndPassword(newUser.getUsername(),newUser.getPassword());
         return  user.getId().toString();
 
