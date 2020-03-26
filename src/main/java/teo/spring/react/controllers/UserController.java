@@ -75,7 +75,7 @@ public class UserController {
             String pass = newUser.getPassword();
             newUser.setPassword(passwordEncoder.encode(pass));
             Users h = this.userService.saveAndFlush(newUser);
-            return h.getId().toString();
+            return "User registered with id "+ h.getId();
         }
 
     }
