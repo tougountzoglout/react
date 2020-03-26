@@ -39,7 +39,8 @@ public class UserController {
 //        System.out.println(id);
 //        Long idd = Long.valueOf(id);
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
-        Users user=this.userService.findByUsernameAndPassword(newUser.getUsername(),newUser.getPassword());
+        Users user =new Users();
+        user=this.userService.findByUsernameAndPassword(newUser.getUsername(),newUser.getPassword());
         return  user.getId().toString();
 
     }
