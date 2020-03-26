@@ -31,6 +31,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean existsByUsername(String username) {
+        return this.userRepository.existsByUsername(username);
+    }
+
+    @Override
     public void deleteByID(Long id) {
         this.userRepository.deleteById(id);
     }
@@ -46,7 +51,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Users findByUsername(String username) throws NullPointerException {
+    public Users findByUsername(String username){
         return this.userRepository.findByUsername(username);
     }
 }

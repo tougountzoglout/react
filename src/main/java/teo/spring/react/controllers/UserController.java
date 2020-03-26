@@ -66,22 +66,18 @@ public class UserController {
 
     @PostMapping("/user/ins")
     public String insertUser(@RequestBody Users newUser) {
-        try{
-        if (this.userService.findByUsername(newUser.getUsername()).equals(null)) {
-            String pass = newUser.getPassword();
-            newUser.setPassword(passwordEncoder.encode(pass));
-            Users h = this.userService.saveAndFlush(newUser);
-            return h.getId().toString();
-        }
-        else{
+
+        if (this.userService.existsByUsername(newUser.getUsername())) {
             return "Error!User already registered!";
         }
-        }catch(Exception ex){
+        else{
+
             String pass = newUser.getPassword();
             newUser.setPassword(passwordEncoder.encode(pass));
             Users h = this.userService.saveAndFlush(newUser);
             return h.getId().toString();
         }
+
     }
 
     @PutMapping("/user/ins/{id}")

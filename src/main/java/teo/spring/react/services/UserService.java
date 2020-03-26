@@ -21,6 +21,7 @@ public interface UserService {
    // void deleteInBatch(Iterable<T> var1);
 
   //  void deleteAllInBatch();
+  public boolean existsByUsername(String username);
 
     public void deleteByID(Long id);
 
