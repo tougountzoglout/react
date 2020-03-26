@@ -41,12 +41,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Users findByUsernameAndPassword(String username, String password) {
+    public Users findByUsernameAndPassword(String username, String password)  {
         return this.userRepository.findByUsernameAndPassword(username,password);
     }
 
     @Override
-    public Users findByUsername(String username) {
+    public Users findByUsername(String username) throws NullPointerException {
         return this.userRepository.findByUsername(username);
     }
 }
