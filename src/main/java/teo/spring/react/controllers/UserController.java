@@ -36,12 +36,16 @@ public class UserController {
 
     @PostMapping("/user")
     public String getUserByNameAndPassword(@RequestBody Users newUser) {
-//        System.out.println(id);
+       System.out.println(passwordEncoder.encode(newUser.getPassword()));
 //        Long idd = Long.valueOf(id);
+        String id="0";
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
         Users user =new Users();
         user=this.userService.findByUsernameAndPassword(newUser.getUsername(),newUser.getPassword());
-        return  user.getId().toString();
+        if (user==null)
+            return id;
+        else
+            return  user.getId().toString();
 
     }
 
